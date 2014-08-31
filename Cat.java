@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * The cat moves
+ * The cat moves up when space is pressed and down when not. This class is also used to spawn in the pipes and detect if there is a collision as well as manage all sounds.
  * 
  * @author Sam Collins
- * @version 0.4
+ * @version 0.5
  */
 public class Cat extends Mover
 {
@@ -17,85 +17,89 @@ public class Cat extends Mover
             background.playLoop();      //Plays in a loop
         }
     }
-    int counter = 0;
-    int counterPipe = 0;
+    int CounterTail = 0;    //Counter for tail
+    int CounterPipe = 0;    //Counter for distance between pipes
     int movement = 0;
-    boolean start = false;
+    boolean start = false;    //Variable for starting movement
     int height;
     GreenfootSound wing = new GreenfootSound ("wing.wav");
 
     public void act() 
     {               
-        if (Greenfoot.isKeyDown("space")) 
+        if (Greenfoot.isKeyDown("space"))    //Tests if space key is down
         {
-            start = true;        
+            start = true;    //When start is true the next if will start play
         }
 
         if (start == true)
         {
-            play();
+            play();    //This runs the code for making the cat move up and down as well as spawning pipes
         } else 
         {
-            getWorld().addObject(new Tail(), getX()-43, getY()-movement);
-            counter += 1;
+            getWorld().addObject(new Tail(), getX()-43, getY()-movement);    //Spawns tail behind the cat
+            CounterTail += 1;
 
-            if (counter <= 8)      
+            if (CounterTail <= 8)
                 movement = 0;
 
-            if (counter >= 9)        
+            if (CounterTail >= 9)    //This makes tail spawn above 5 and then below making it seem likes it moving up and down
                 movement = 5;
 
-            if (counter == 16)        
-                counter = 1;  
+            if (CounterTail == 16)
+                CounterTail = 1;
         }
 
-        if (getY() >= getWorld().getHeight() - 2 || getY() == 2 )   //Resets the world (so the cat moves to the start) if the cat reaches the top or bottom
+        if (getY() >= getWorld().getHeight() - 2 || getY() == 2 )    //Resets the world (so the cat moves to the start) if the cat reaches the top or bottom
         {
-            Greenfoot.setWorld(new Background());
-            background.pause();
+            die();
         }
     }
 
     private int jumpStrength = 2;
     private void jump()
     {
-        setVSpeed(-jumpStrength);
-        fall();
+        setVSpeed(-jumpStrength);    //Makes cat move up by the jump strength above
+        fall();    //Class from mover which makes the cat move down by adding gravity
     }
 
     public void play()
     {
-        if (Greenfoot.isKeyDown("space"))        
+        if (Greenfoot.isKeyDown("space"))
         {
             jump();
-            if (wing.isPlaying() == false)
+            if (wing.isPlaying() == false)    //Makes sure the sound is not already playing
             {
-                wing.play();
+                wing.play();    //Plays wing sound
             }
         }
-        else fall();    
+        else fall();    //Class from mover which makes the cat move down by adding gravity
 
-        Actor pipe = getOneIntersectingObject(UpperPipe.class);
-        if (pipe !=null)
+        Actor pipe = getOneIntersectingObject(UpperPipe.class);    //Resets world when cat touches the pipe
+        if (pipe != null)
         {
-            Greenfoot.setWorld(new Background());
-            background.pause();
-            Greenfoot.playSound("die.wav");
+            die();
         }
 
         getWorld().addObject(new Tail(), getX()-43, getY()-movement);
         counter += 1;      
 
-        counterPipe += 1;        
-        if (counterPipe == 70)
+        counterPipe += 1;    //Counter for distance between pipes
+        if (counterPipe == 70)    //After 70 acts a new pipe will appear
         {
-            height = Greenfoot.getRandomNumber(100);
-
+            height = Greenfoot.getRandomNumber(100);    //Sets pipe location to random number
             getWorld().addObject(new UpperPipe(), getWorld().getWidth(), height);
-            counterPipe = 0;
-
-            height += 650;            
+            
+            height += 650;    //Adds hight so the pipe is below the upper one
             getWorld().addObject(new LowerPipe(), getWorld().getWidth(), height);
+            
+            counterPipe = 0;    //Resets counter so it will count back to 70 for next pipe
         }
     }
-}
+
+    public void die()
+    {
+        Greenfoot.setWorld(new Background());    //Resets world
+        background.pause();    //Pauses background music
+        Greenfoot.playSound("die.wav");    //Plays dieing sound
+    }
+}  

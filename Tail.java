@@ -1,24 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Tail here.
+ * Tail comes out of the back fo the cat
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sam Collins
+ * @version 0.2
  */
 public class Tail extends Actor
 {
-    /**
-     * Act - do whatever the Tail wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     public void act() 
     {
-        move(-4);
+        move(-4);    //Moves tail back at constant speed
         
-        if (getX() <= 0)
+        if (getX() <= 0)    //When tail is of the screen
         {
-            getWorld().removeObject(this);
+            getWorld().removeObject(this);    //Removes tail instances
         }
     }    
 }
