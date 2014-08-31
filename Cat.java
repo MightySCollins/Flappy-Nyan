@@ -17,8 +17,8 @@ public class Cat extends Mover
             background.playLoop();      //Plays in a loop
         }
     }
-    int CounterTail = 0;    //Counter for tail
-    int CounterPipe = 0;    //Counter for distance between pipes
+    int counterTail = 0;    //Counter for tail
+    int counterPipe = 0;    //Counter for distance between pipes
     int movement = 0;
     boolean start = false;    //Variable for starting movement
     int height;
@@ -37,16 +37,16 @@ public class Cat extends Mover
         } else 
         {
             getWorld().addObject(new Tail(), getX()-43, getY()-movement);    //Spawns tail behind the cat
-            CounterTail += 1;
+            counterTail += 1;
 
-            if (CounterTail <= 8)
+            if (counterTail <= 8)
                 movement = 0;
 
-            if (CounterTail >= 9)    //This makes tail spawn above 5 and then below making it seem likes it moving up and down
+            if (counterTail >= 9)    //This makes tail spawn above 5 and then below making it seem likes it moving up and down
                 movement = 5;
 
-            if (CounterTail == 16)
-                CounterTail = 1;
+            if (counterTail == 16)
+                counterTail = 1;
         }
 
         if (getY() >= getWorld().getHeight() - 2 || getY() == 2 )    //Resets the world (so the cat moves to the start) if the cat reaches the top or bottom
@@ -81,7 +81,7 @@ public class Cat extends Mover
         }
 
         getWorld().addObject(new Tail(), getX()-43, getY()-movement);
-        counter += 1;      
+        counterTail += 1;      
 
         counterPipe += 1;    //Counter for distance between pipes
         if (counterPipe == 70)    //After 70 acts a new pipe will appear
