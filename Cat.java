@@ -1,20 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Cat here.
+ * The cat moves
  * 
- * @author Sam 
- * @version 0.3
+ * @author Sam Collins
+ * @version 0.4
  */
 public class Cat extends Mover
 {
-    GreenfootSound background = new GreenfootSound ("Nyan.mp3");
+    GreenfootSound background = new GreenfootSound ("Nyan.mp3");    //Creates sound as GreenfootSound object
     public Cat()
     {
-        if (background.isPlaying() == false)
+        if (background.isPlaying() == false)    //Checks to see if background music is playing
         {
-            background.setVolume(40);
-            background.playLoop();
+            background.setVolume(40);   //Lowers volume of music
+            background.playLoop();      //Plays in a loop
         }
     }
     int counter = 0;
@@ -49,12 +49,10 @@ public class Cat extends Mover
                 counter = 1;  
         }
 
-        if (getY() >= getWorld().getHeight() - 2)
+        if (getY() >= getWorld().getHeight() - 2 || getY() == 2 )   //Resets the world (so the cat moves to the start) if the cat reaches the top or bottom
         {
             Greenfoot.setWorld(new Background());
             background.pause();
-            //Background world = (Background) getWorld();
-            //world.theCounter.bumpCount(1);
         }
     }
 
