@@ -13,18 +13,22 @@ public class Counter extends Actor
 
     public Counter()     
     {
-        setImage(new GreenfootImage("Score: "+totalCount, 30, Color.WHITE, (new Color(1, 68, 121))));    //Sets up score when world starts
+        setImage(new GreenfootImage("Points: "+totalCount, 30, Color.RED, (new Color(1, 76, 91, 0))));    //Sets up score when world starts
     }
-    
+
     public void bumpCount(int amount)
     {
         totalCount += amount;    //Adds amount parameter to the current score
 
-        setImage(new GreenfootImage("Score: "+totalCount, 30, Color.WHITE, (new Color(1, 68, 121))));    //Regenerates score for new score defined in total count
+        setImage(new GreenfootImage("Points: "+totalCount, 30, Color.RED, (new Color(1, 76, 91, 0))));    //Variable Used for info xoxo.
+        //if (totalCount > 4){setImage(new GreenfootImage("Points: "+totalCount, 30, Color.ORANGE, (new Color(1, 76, 91, 0))));}  //Template code ^_^
+        if (totalCount > 19){setImage(new GreenfootImage("Points: "+totalCount, 30, Color.GREEN, (new Color(1, 76, 91, 0))));}  else
+        if (totalCount > 9){setImage(new GreenfootImage("Points: "+totalCount, 30, Color.ORANGE, (new Color(1, 76, 91, 0))));} 
+
     }
 
     public void act() 
     {
-        
+
     }    
 }

@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Cat extends Mover
 {
-    GreenfootSound background = new GreenfootSound ("Nyan.mp3");    //Creates sound as GreenfootSound object
+    GreenfootSound background = new GreenfootSound ("_Nyan.mp3");    //Creates sound as GreenfootSound object
     public Cat()
     {
         if (background.isPlaying() == false)    //Checks to see if background music is playing
@@ -22,7 +22,7 @@ public class Cat extends Mover
     int movement = 0;
     boolean start = false;    //Variable for starting movement
     int height;
-    GreenfootSound wing = new GreenfootSound ("wing.wav");
+    GreenfootSound wing = new GreenfootSound ("wing2.mp3");
 
     public void act() 
     {               
@@ -49,7 +49,11 @@ public class Cat extends Mover
                 counterTail = 1;
         }
 
-        if (getY() >= getWorld().getHeight() - 2 || getY() == 2 )    //Resets the world (so the cat moves to the start) if the cat reaches the top or bottom
+        if (getY() < 0)    //Resets the world (so the cat moves to the start) if the cat reaches the top or bottom
+        {
+            setLocation(getX(), 0);         
+        }
+        if (getY() >= getWorld().getHeight() - 2)
         {
             die();
         }
