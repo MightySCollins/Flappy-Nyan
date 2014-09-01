@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Background here.
+ * Creates the world and positions objects
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Sam Collins and Shane Simpkin
+ * @version 0.1
  */
 public class Background extends World
 {
@@ -16,7 +16,7 @@ public class Background extends World
      */
     public Background()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 1000x600 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1, false); 
 
         prepare();
@@ -32,6 +32,6 @@ public class Background extends World
         addObject(cat, 236, 322);
 
         theCounter = new Counter();
-        addObject(theCounter, 146, 18);
+        addObject(theCounter, 73, 29);
     }
 }

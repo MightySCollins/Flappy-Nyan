@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * The lower pipe appears below the upper pipe
  * 
- * @author Sam Collins 
+ * @author Sam Collins and Shane Simpkin
  * @version 0.1
  */
 public class LowerPipe extends UpperPipe

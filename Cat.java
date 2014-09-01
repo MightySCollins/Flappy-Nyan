@@ -3,26 +3,28 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * The cat moves up when space is pressed and down when not. This class is also used to spawn in the pipes and detect if there is a collision as well as manage all sounds.
  * 
- * @author Sam Collins
- * @version 0.5
+ * @author Sam Collins and Shane Simpkin
+ * @version 0.6
  */
 public class Cat extends Mover
 {
     GreenfootSound background = new GreenfootSound ("_Nyan.mp3");    //Creates sound as GreenfootSound object
+    GreenfootSound wing = new GreenfootSound ("wing.wav");
     public Cat()
     {
         if (background.isPlaying() == false)    //Checks to see if background music is playing
         {
-            background.setVolume(40);   //Lowers volume of music
-            background.playLoop();      //Plays in a loop
+            background.setVolume(50);   //Lowers volume of music
+            background.playLoop();      //Plays in a loop            
         }
+        wing.setVolume(80);
     }
     int counterTail = 0;    //Counter for tail
     int counterPipe = 0;    //Counter for distance between pipes
     int movement = 0;
     boolean start = false;    //Variable for starting movement
-    int height;
-    GreenfootSound wing = new GreenfootSound ("wing2.mp3");
+    int height; 
+    
 
     public void act() 
     {               
@@ -92,10 +94,10 @@ public class Cat extends Mover
         {
             height = Greenfoot.getRandomNumber(100);    //Sets pipe location to random number
             getWorld().addObject(new UpperPipe(), getWorld().getWidth(), height);
-            
+
             height += 650;    //Adds hight so the pipe is below the upper one
             getWorld().addObject(new LowerPipe(), getWorld().getWidth(), height);
-            
+
             counterPipe = 0;    //Resets counter so it will count back to 70 for next pipe
         }
     }
