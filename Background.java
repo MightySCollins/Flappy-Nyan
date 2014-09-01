@@ -32,8 +32,6 @@ public class Background extends World
         addObject(cat, 236, 322);
 
         theCounter = new Counter();
-        addObject(theCounter, 60, 30);
-        //cat.setLocation(180, 324);
-        //cat.setLocation(236, 322);
+        addObject(theCounter, 146, 18);
     }
 }

@@ -21,6 +21,7 @@ public class UpperPipe extends Actor
         {
             Background world = (Background) getWorld();
             world.theCounter.bumpCount(1);    //Adds a point (It actually adds 2 because both pipes run the same code)
+            Greenfoot.playSound("pong.mp3");
         }
     }    
 }
